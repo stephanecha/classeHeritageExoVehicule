@@ -10,10 +10,13 @@ namespace classeHeritageExoVehicule
     {
         public string Adresse { set; get; }
         public string Ville { get; set; }
-        List<Employe> Employes = new List<Employe>();
-        List<Vehicule> Vehicules = new List<Vehicule>();
+       // List<Employe> Employes = new List<Employe>();
+        List<Vehicule> Parc = new List<Vehicule>();
 
-    }
+        public List<Employe> Personnel { get; set; }
+
+
+}
     public class Employe : Personne
     {
 
@@ -39,14 +42,18 @@ namespace classeHeritageExoVehicule
     {
         public DateTime DateDebut { set; get; }
         public DateTime DateFin { set; get; }
-        public int KilometrageMax { set; get; }
-
+        public int KilometrageMax { get; set; }
+        public Client Client { get; set; }
+        public Vehicule Vehicule { get; set; }
         double prix;
 
 
         public double CalculerMontantLocation(DateTime DateDebut, DateTime DateFin)
         {
-            return prix;
+            var nbJours = (DateFin - DateDebut).TotalDays;
+
+            return Vehicule.getPrixJour()*nbJours;
+
         }
 
 
@@ -80,6 +87,8 @@ namespace classeHeritageExoVehicule
     {
         public string Nom { set; get; }
         public double PrixJour { set; get; }
+
+        public List <Voiture> Voitures { get; set; }
 
     }
 
